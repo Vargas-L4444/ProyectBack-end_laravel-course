@@ -29,8 +29,6 @@ class Post extends Model implements HasMedia {
         $this
             ->addMediaConversion('preview')
             ->width(400);
-            // ->fit(Fit::Contain, 300, 300)
-            // ->nonQueued();
         
         $this
             ->addMediaConversion('large')
@@ -59,17 +57,7 @@ class Post extends Model implements HasMedia {
     }
 
     public function imageUrl($conversionName = '') {
-        // if ($this->image) {
-        //     return Storage::url($this->image);
-        // }
-        
-        // return null;
-
-
-
 
         return $this->getFirstMedia()?->getUrl($conversionName);
-        // $media = $this->getFirstMedia();
-        // return $media ? $media->getUrl('preview') : null;
     }
 }

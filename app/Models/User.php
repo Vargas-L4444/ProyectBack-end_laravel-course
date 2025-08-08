@@ -44,7 +44,15 @@ class User extends Authenticatable implements HasMedia {
     public function registerMediaConversions(?Media $media = null): void {
         $this
             ->addMediaConversion('avatar')
+            ->width(128)
             ->crop(128, 128);
+    }
+
+
+    public function registerMediaCollections(): void {
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile();
 
     }
 
@@ -65,11 +73,7 @@ class User extends Authenticatable implements HasMedia {
 
 
     public function imageUrl() {
-        if ($this->image) {
-            return Storage::url($this->image);
-        }
-        
-        return null;
+        return $this->getFirstMedia('avatar')?->getUrl('avatar');
     }
 
 

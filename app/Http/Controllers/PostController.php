@@ -9,19 +9,31 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 //use Pest\Mutate\Mutators\Sets\ReturnSet;
+
 
 class PostController extends Controller {
 
     public function index() {
-        //$categories = Category::get();
-        $posts = Post::latest()
-            ->simplePaginate(5);
+        
+        // DB::listen(function ($query) {
+        //     Log::info($query->sql);
+        // });
 
-        //dump($categories);
-        //dd($categories);
+        $user = auth()->user();
+
+        $query = Post::with(['user', 'media'])
+            ->withCount('claps')
+            ->latest();
+        if ($user) {
+            $ids = $user->following()->pluck('users_id');
+            $query->whereIn('user_id', $ids);
+        }
+
+        $posts = $query->simplePaginate(5);
         return view('post.index', [
-            //'categories' => $categories,
             'posts' => $posts,
         ]);
     }
@@ -33,7 +45,7 @@ class PostController extends Controller {
     public function create() {
         $categories = Category::get();
         return view('post.create', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
     
@@ -58,7 +70,7 @@ class PostController extends Controller {
         $post->addMediaFromRequest('image')
             ->toMediaCollection();
 
-        return redirect()->route('dashboard')->with('success', 'Post created successfully.');
+        return redirect()->route('dashboard');
     }
 
 
@@ -98,7 +110,10 @@ class PostController extends Controller {
     }
 
     public function category(Category $category) {
+
         $posts = $category->posts()
+            ->with(['user', 'media'])
+            ->withCount('claps')
             ->latest()
             ->simplePaginate(5);
 
