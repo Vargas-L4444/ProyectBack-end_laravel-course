@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable {
+// class User extends Authenticatable implements MustVerifyEmail {
+class User extends Authenticatable implements HasMedia {
     
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -34,6 +38,14 @@ class User extends Authenticatable {
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function registerMediaConversions(?Media $media = null): void {
+        $this
+            ->addMediaConversion('avatar')
+            ->crop(128, 128);
+
     }
 
 

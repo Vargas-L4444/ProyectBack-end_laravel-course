@@ -1276,6 +1276,8 @@ namespace App\Models {
      * @property-read int|null $followers_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
      * @property-read int|null $notifications_count
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+     * @property-read int|null $media_count
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereUsername($value)
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereName($value)
