@@ -4,16 +4,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4 text-gray-900">
                     <x-category-tabs>
-                        No categories found!
+                        ¡No se encontraron categorías! -> No categories found!
                     </x-category-tabs>
                 </div>
             </div>
 
             <div class="mt-8 text-gray-900">
+                {{-- post item component --}}
                 @forelse ($posts as $p)
                     <x-post-item :post="$p"></x-post-item>
                 @empty
-                    <div class="text-center text-gray-400 py-16">No Posts Found!</div>
+                    <div class="text-center text-gray-400 py-16">¡No se encontraron publicaciones! -> No posts found!</div>
                 @endforelse
             </div>
 

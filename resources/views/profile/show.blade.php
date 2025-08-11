@@ -5,8 +5,10 @@
                 
                 <div class="flex">
                     <div class="flex-1 pr-8">
+                        {{-- Name User Profile Header --}}
                         <h1 class="text-5xl font-bold">{{ $user->name }}</h1>
 
+                        {{-- Posts Section --}}
                         <div class="mt-8">
                             @forelse ($posts as $p)
                                 <x-post-item :post="$p"></x-post-item>
@@ -14,6 +16,7 @@
                                 <div class="text-center text-gray-400 py-16">No Posts Found!</div>
                             @endforelse
                         </div>
+
                     </div>
                     <x-follow-ctr :user="$user">
                         <x-user-avatar :user="$user" size="w-24 h-24" />

@@ -101,6 +101,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
             'Spatie\\TemporaryDirectory\\' => 26,
+            'Spatie\\Sluggable\\' => 17,
             'Spatie\\MediaLibrary\\' => 20,
             'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\Image\\' => 13,
@@ -361,6 +362,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Spatie\\TemporaryDirectory\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/temporary-directory/src',
+        ),
+        'Spatie\\Sluggable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-sluggable/src',
         ),
         'Spatie\\MediaLibrary\\' => 
         array (
@@ -6738,6 +6743,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Spatie\\MediaLibrary\\Support\\UrlGenerator\\DefaultUrlGenerator' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Support/UrlGenerator/DefaultUrlGenerator.php',
         'Spatie\\MediaLibrary\\Support\\UrlGenerator\\UrlGenerator' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Support/UrlGenerator/UrlGenerator.php',
         'Spatie\\MediaLibrary\\Support\\UrlGenerator\\UrlGeneratorFactory' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Support/UrlGenerator/UrlGeneratorFactory.php',
+        'Spatie\\Sluggable\\Exceptions\\InvalidOption' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/Exceptions/InvalidOption.php',
+        'Spatie\\Sluggable\\HasSlug' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/HasSlug.php',
+        'Spatie\\Sluggable\\HasTranslatableSlug' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/HasTranslatableSlug.php',
+        'Spatie\\Sluggable\\SlugOptions' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/SlugOptions.php',
         'Spatie\\TemporaryDirectory\\Exceptions\\InvalidDirectoryName' => __DIR__ . '/..' . '/spatie/temporary-directory/src/Exceptions/InvalidDirectoryName.php',
         'Spatie\\TemporaryDirectory\\Exceptions\\PathAlreadyExists' => __DIR__ . '/..' . '/spatie/temporary-directory/src/Exceptions/PathAlreadyExists.php',
         'Spatie\\TemporaryDirectory\\TemporaryDirectory' => __DIR__ . '/..' . '/spatie/temporary-directory/src/TemporaryDirectory.php',

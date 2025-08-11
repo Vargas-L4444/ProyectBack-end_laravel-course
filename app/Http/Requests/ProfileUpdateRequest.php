@@ -16,7 +16,7 @@ class ProfileUpdateRequest extends FormRequest {
                 'required', 
                 'string', 
                 'max:255', 
-                Rule::unique(User::class)->ignore($this->user()->id)
+                Rule::unique(User::class)->ignore($this->user()->id),
             ],
 
             'image' => [

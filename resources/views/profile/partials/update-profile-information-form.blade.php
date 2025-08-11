@@ -18,8 +18,8 @@
         @method('patch')
         @method('patch')
 
-        
-        @if ($user->getFirstMedia())
+
+        @if ($user->imageUrl())
             <div>
                 <img src="{{ $user->imageUrl() }}" alt="{{ $user->name }}" class="h-20 w-20 rounded-full">
             </div>

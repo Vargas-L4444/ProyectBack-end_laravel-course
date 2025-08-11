@@ -2,7 +2,7 @@
     <div class="p-5 flex-1">
         <a href="{{ route('post.show', [
             'username' => $post->user->username, 
-            'post' => $post
+            'post' => $post->slug
         ]) }}">
 
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -13,11 +13,21 @@
         <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {{ Str::words($post->content, 25) }}
         </div>
-        <a href="{{ route('post.show', [
-            'username' => $post->user->username, 
-            'post' => $post
-        ]) }}" class="text-sm text-gray-400 flex gap-4">
-            {{ $post->created_at->format('M d, Y') }}
+        <div class="text-sm text-gray-400 flex gap-4">
+
+            {{-- <img src="{{ $post->user->imageUrl() }}" alt="{{ $post->user->name }}" class="w-8 h-8 rounded-full"> --}}
+            <div class="">
+                by
+                <a href="{{ route('profile.show', $post->user->username) }}" class="text-gray-500 hover:underline">
+                    {{ $post->user->username }}
+                </a>
+                {{-- {{ $post->user->username }} --}}
+                at
+                {{ $post->created_at->format('M d, Y') }}
+            </div>
+
+            {{-- {{ $post->user->name }} --}}
+            {{-- {{ $post->created_at->format('M d, Y') }} --}}
 
             <span class="inline-flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -27,7 +37,8 @@
                 </svg>
                 {{ $post->claps_count }}
             </span>
-        </a>
+
+        </div>
     </div>
 
     <!-- Image section -->

@@ -5,7 +5,7 @@
                 ? 'inline-block px-4 py-2 hover:text-gray-900 hover:bg-gray-100 rounded-lg dark:hover:bg-gray-800 dark:hover:text-white' 
                 : 'inline-block px-4 py-2 text-white bg-blue-600 rounded-lg active' 
             }}">
-            Todo
+            Todo 'all'
         </a>
     </li>
     @forelse ($categories as $category)

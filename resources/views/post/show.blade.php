@@ -26,17 +26,39 @@
 
                         </x-follow-ctr>
 
+
+                        {{-- User Info --}}
                         <div class="flex gap-2 text-sm text-gray-500">
                             {{ $post->readTime() }} min read
                             &middot;
                             {{-- @dump($post->created_at) --}}
                             {{ $post->created_at->format('M d, Y') }}
                         </div>
+
                     </div>
                 </div>
 
+                {{-- Edit and Delete Buttons --}}
+                @if ($post->user_id === Auth::id())
+                    <div class="py-4 mt-8 border-t border-b border-gray-200">
+                        <x-primary-button href="{{ route('post.edit', $post->slug) }}">
+                            Editar Post
+                        </x-primary-button>
+                        <form class="inline block" action="{{ route('post.destroy', $post) }}" method="post">
+                            @csrf
+                            @method('delete')
+                        </form>
+                        <x-danger-button>
+                            Eliminar Post
+                        </x-danger-button>
+                    </div>
+                @endif
+
+                {{-- Post Item Component --}}
+
                 {{-- Clap Section --}}
                 <x-clap-button :post="$post" />
+
 
                 {{-- Content Section --}}
                 <div class="mt-8">
@@ -47,6 +69,7 @@
                     </div>
                 </div>
 
+                {{-- Category badge --}}
                 <div class="mt-8">
                     <span class="px-4 py-2 bg-gray-200 rounded-2xl">
                         {{ $post->category->name }}
