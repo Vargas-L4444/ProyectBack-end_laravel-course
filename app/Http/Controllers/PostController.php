@@ -108,8 +108,8 @@ class PostController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostUpdateRequest $request, Post $post)
-    {
+    public function update(PostUpdateRequest $request, Post $post) {
+
         if ($post->user_id !== Auth::id()) {
             abort(403);
         }
@@ -128,8 +128,7 @@ class PostController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
-    {
+    public function destroy(Post $post) {
         if ($post->user_id !== Auth::id()) {
             abort(403);
         }
@@ -142,9 +141,19 @@ class PostController extends Controller {
 
 
     public function category(Category $category) {
-        $posts = $category->posts()
-            ->latest()
-            ->simplePaginate(5);
+        $user = auth()->user();
+
+        $query = $category->posts()
+            ->where('published_at', '<=', now())
+            ->with(['user', 'media'])
+            ->withCount('claps')
+            ->latest();
+
+        if ($user) {
+            $ids = $user->following()->pluck('users.id');
+            $query->whereIn('user_id', $ids);
+        }
+        $posts = $query->simplePaginate(5);
 
         return view('post.index', [
             'posts' => $posts,
